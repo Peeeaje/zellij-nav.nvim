@@ -1,5 +1,13 @@
 local M = {}
 
+local function move_command(direction)
+  if direction == "up" or direction == "down" then
+    return "move-focus "
+  else
+    return "move-focus-or-tab "
+  end
+end
+
 local function nav(short_direction, direction)
   -- get window ID, try switching windows, and get ID again to see if it worked
   local cur_winnr = vim.fn.winnr()
@@ -8,7 +16,8 @@ local function nav(short_direction, direction)
 
   -- if the window ID didn't change, then we didn't switch
   if cur_winnr == new_winnr then
-    vim.fn.system("zellij action move-focus " .. direction)
+    local action = move_command(direction)
+    vim.fn.system("zellij action " .. action .. direction)
     if vim.v.shell_error ~= 0 then
       error("zellij executable not found in path")
     end
