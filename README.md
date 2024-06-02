@@ -32,7 +32,7 @@ possible.
 
 ```lua
 {
-  "https://git.sr.ht/~swaits/zellij-nav.nvim",
+  "Peeeaje/zellij-nav.nvim",
   lazy = true,
   event = "VeryLazy",
   keys = {
@@ -49,7 +49,7 @@ possible.
 
 ```lua
 {
-  "https://git.sr.ht/~swaits/zellij-nav.nvim",
+  "Peeeaje/zellij-nav.nvim",
   config = function()
     require("zellij-nav").setup()
 
@@ -66,7 +66,7 @@ possible.
 ### [vim-plug](https://github.com/junegunn/vim-plug)
 
 ```vim
-Plug 'https://git.sr.ht/~swaits/zellij-nav.nvim'
+Plug 'Peeeaje/zellij-nav.nvim'
 lua require("zellij-nav").setup()
 
 nnoremap <c-h> <cmd>ZellijNavigateLeft<cr>
@@ -77,35 +77,16 @@ nnoremap <c-l> <cmd>ZellijNavigateRight<cr>
 
 ## Configuring Zellij
 
-This plugin only covers the Neovim side of things. To achieve a fully seamless
-workflow, we also need zellij to perform a few tasks.
+Just install [vim-zellij-navigator](https://github.com/hiasr/vim-zellij-navigator) and follow the instructions.
 
-In an ideal scenario, we would be able to map `C-hjkl` to function identically
-in both zellij and Neovim, but unfortunately, that is not possible. Currently,
-zellij has a few issues that prevent us from reaching that point.
+## TODOs
 
-Firstly, zellij does not allow us to bind `C-j` to any function. This is a
-[known bug](https://github.com/zellij-org/zellij/issues/2679).
-
-Secondly, and more importantly, when any of the `C-hjkl` keystrokes are used in
-zellij, we need to be able to:
-
-1. Determine if the focused pane is running `nvim`.
-2. If it is, forward the keystrokes to the application, for example, by using
-   the zellij `Write` action.
-3. If it is not, directly perform the keystroke action in zellij by using the
-   `MoveFocus <direction>` action.
-
-Currently, I have not found a way to accomplish this, even through the zellij
-[plugin system](https://zellij.dev/documentation/plugins).
-
-Therefore, my configuration uses `A-hjkl` in zellij. As a result, I use
-`C-hjkl` to navigate within Neovim and to switch from Neovim to another zellij
-pane. However, if I'm in a non-`nvim` pane, I use `A-hjkl` to change focus.
+- [ ] Add config options (if needed).
 
 ## MIT License
 
 Copyright © 2023 Stephen Waits <steve@waits.net>
+Copyright © 2024 Jumpei Yamakawa <yamajun88@me.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
